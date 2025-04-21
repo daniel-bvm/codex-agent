@@ -32,7 +32,7 @@ async def run_codex(prompt: str) -> AsyncGenerator[BaseResponse, None]:
     process = await asyncio.create_subprocess_shell(
         command_str,
         stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
+        stderr=sys.stderr,
         env=os.environ
     )
 
