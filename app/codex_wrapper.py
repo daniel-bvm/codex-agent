@@ -37,6 +37,11 @@ async def run_codex(prompt: str) -> AsyncGenerator[BaseResponse, None]:
     )
 
     async for line in read_stream(process.stdout):
-        line_json: dict = json.loads(line)
-        print(line_json)
+
+        try:
+            line_json: dict = json.loads(line)
+        except json.JSONDecodeError:
+            print(f"Error decoding line: {line} (skipping)")
+            continue
+
         yield create_model_from_dict(line_json)
