@@ -26,6 +26,7 @@ async def run_codex(prompt: str) -> AsyncGenerator[BaseResponse, None]:
         "--auto-edit",
         "--full-auto",
         "--no-project-doc",
+        "--dangerously-auto-approve-everything",
         "--json", "-q",
         prompt
     ]
